@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gen Hasan - Kebab Favoritmu</title>
+<meta name="theme-color" content="#fdf0e4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fdf0e4;--card:#fff9f3;--purple:#4a1d6b;--purple2:#6b2d99;--orange:#f39a2e;--text:#2a1a33;--muted:#7d6b86;--sh:8px 8px 20px rgba(205,170,140,.28),-6px -6px 16px rgba(255,255,255,.9)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:12px}
+body{font-family:'Poppins',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+[hidden]{display:none!important}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.app{max-width:1080px;margin:0 auto;padding:max(18px,env(safe-area-inset-top)) 18px 120px}
+.neo{background:var(--card);box-shadow:var(--sh);border-radius:20px}
+/* header */
+.top{display:flex;align-items:center;gap:12px}
+.ibtn{width:52px;height:52px;display:grid;place-items:center;position:relative;transition:transform .2s}
+.ibtn:active{transform:scale(.92)}.ibtn svg{width:24px;height:24px;stroke:var(--text);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.badge{position:absolute;top:-6px;right:-4px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:var(--purple);color:#fff;font-size:11px;font-weight:600;display:grid;place-items:center;transition:transform .3s}
+.badge.pop{animation:pop .4s}
+@keyframes pop{50%{transform:scale(1.5)}}
+.brand{flex:1;min-width:0}
+.brand small{font-size:13px;display:block}
+.brand h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:34px;line-height:1.1;color:var(--purple);letter-spacing:.5px;text-transform:uppercase}
+.top .ibtn{flex:none}
+/* search */
+.search{display:flex;gap:12px;margin-top:20px}
+.sbox{flex:1;display:flex;align-items:center;gap:12px;padding:0 18px;height:56px;border-radius:28px}
+.sbox svg{width:22px;height:22px;stroke:var(--text);fill:none;stroke-width:2;flex:none}
+.sbox input{flex:1;border:0;background:none;outline:0;min-width:0;font-size:15px}
+.search .ibtn{height:56px;width:56px;border-radius:28px}
+/* hero */
+.hero{margin-top:20px;border-radius:26px;overflow:hidden;position:relative;background:var(--purple);box-shadow:0 14px 30px rgba(74,29,107,.3);touch-action:pan-y}
+.track{display:flex;transition:transform .7s cubic-bezier(.65,0,.25,1)}
+.slide{min-width:100%;display:grid;grid-template-columns:1.1fr 1fr;align-items:center;gap:8px;padding:30px 28px;min-height:300px;color:#fff;position:relative;background:radial-gradient(circle at 75% 45%,#7a3aa8 0,#4a1d6b 55%,#2e1044 100%)}
+.slide:nth-child(2){background:radial-gradient(circle at 75% 45%,#9a3b6a 0,#5a1d52 55%,#33102e 100%)}
+.slide:nth-child(3){background:radial-gradient(circle at 75% 45%,#3e5aa8 0,#2a1d6b 55%,#17104a 100%)}
+.slide h2{font-family:'Oswald',sans-serif;font-size:clamp(28px,5vw,48px);line-height:1.08;text-transform:uppercase;font-weight:700}
+.slide h2 em{display:block;color:var(--orange);font-style:italic;text-transform:none;font-family:'Poppins';font-weight:700}
+.slide p{margin:12px 0 20px;font-size:15px;opacity:.92;max-width:220px}
+.cta{display:inline-flex;align-items:center;gap:10px;background:var(--orange);color:#fff;font-weight:600;padding:10px 12px 10px 22px;border-radius:30px;box-shadow:0 8px 18px rgba(243,154,46,.4);transition:transform .25s}
+.cta:hover{transform:translateY(-2px)}
+.cta i{width:30px;height:30px;border-radius:50%;background:#fff;color:var(--orange);display:grid;place-items:center;font-style:normal;font-weight:700}
+.art{font-size:clamp(100px,22vw,170px);text-align:center;line-height:1;filter:drop-shadow(0 18px 18px rgba(0,0,0,.35));animation:float 4s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px) rotate(-3deg)}}
+.dots{position:absolute;left:28px;bottom:14px;display:flex;gap:7px}
+.dots button{width:8px;height:8px;border-radius:4px;background:rgba(255,255,255,.7);transition:width .4s,background .4s}
+.dots button.on{width:22px;background:var(--orange)}
+/* categories */
+.cats{display:flex;gap:14px;overflow-x:auto;padding:26px 4px 10px;scrollbar-width:none}
+.cats::-webkit-scrollbar{display:none}
+.cat{flex:none;width:78px;text-align:center;font-size:12.5px}
+.cat span{display:grid;place-items:center;width:70px;height:70px;margin:0 auto 8px;border-radius:50%;font-size:32px;background:var(--card);box-shadow:var(--sh);transition:transform .3s,background .3s}
+.cat:hover span{transform:translateY(-3px)}
+.cat.on span{background:#fbd9b4;transform:scale(1.08)}
+.cat.on{color:var(--orange);font-weight:600}
+/* sections */
+.sh{display:flex;justify-content:space-between;align-items:center;margin:22px 0 14px}
+.sh h3{font-size:20px;font-weight:700}
+.sh a,.sh button{color:var(--purple);font-weight:600;font-size:14px;text-decoration:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.card{padding:14px;position:relative;display:flex;flex-direction:column}
+.reveal{opacity:0;transform:translateY(34px) scale(.97);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.in.done{transition:transform .3s,box-shadow .3s}
+.card.done:hover{transform:translateY(-5px)}
+.tag{align-self:flex-start;font-size:10px;font-weight:600;color:#fff;background:var(--purple);padding:4px 10px;border-radius:12px;text-transform:uppercase;letter-spacing:.4px}
+.tag.o{background:var(--orange)}.tag.p{background:#6b2d99}
+.heart{position:absolute;top:12px;right:12px;width:30px;height:30px}
+.heart svg{width:20px;height:20px;stroke:var(--muted);fill:none;stroke-width:2;transition:.3s}
+.heart.on svg{fill:#e2455f;stroke:#e2455f;animation:pop .4s}
+.pic{height:130px;display:grid;place-items:center;font-size:76px;margin:6px 0;transition:transform .5s}
+.card:hover .pic{transform:scale(1.12) rotate(-4deg)}
+.card h4{font-size:15px;font-weight:700;line-height:1.3}
+.card p{font-size:12px;color:var(--muted);margin:4px 0 8px;flex:1}
+.rate{font-size:12px;color:var(--muted)}.rate b{color:var(--orange)}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.price{font-size:20px;font-weight:700}
+.add{width:40px;height:40px;border-radius:50%;background:var(--orange);color:#fff;font-size:26px;line-height:1;display:grid;place-items:center;box-shadow:0 6px 14px rgba(243,154,46,.45);transition:transform .25s}
+.add:hover{transform:rotate(90deg) scale(1.08)}.add:active{transform:scale(.88)}
+.empty{grid-column:1/-1;text-align:center;padding:40px 10px;color:var(--muted)}
+.skel{height:290px;border-radius:20px;background:linear-gradient(90deg,#f6e5d4 25%,#fff3e6 50%,#f6e5d4 75%);background-size:200% 100%;animation:sk 1.3s infinite}
+@keyframes sk{to{background-position:-200% 0}}
+/* offer */
+.offer{margin-top:30px;border-radius:26px;padding:28px;display:flex;align-items:center;justify-content:space-between;gap:14px;background:linear-gradient(110deg,#efe0ef,#e6d3ee);overflow:hidden;position:relative}
+.offer small{font-size:11px;color:var(--purple);font-weight:600}
+.offer h3{font-family:'Oswald',sans-serif;font-size:clamp(26px,5vw,38px);color:var(--purple);line-height:1.1;margin:4px 0}
+.offer p{font-size:13px;margin-bottom:14px}
+.offer .cta{background:var(--purple);box-shadow:none}.offer .cta i{color:var(--purple)}
+.offer .art{font-size:90px;animation-duration:5s}
+.pct{width:100px;height:100px;border-radius:50%;background:var(--purple);color:#fff;display:grid;place-items:center;text-align:center;font-family:'Oswald';font-size:34px;line-height:1;flex:none;animation:pulse 2.4s infinite}
+.pct small{color:#fff;font-size:15px;display:block}
+@keyframes pulse{50%{transform:scale(1.07)}}
+.info{margin-top:30px;padding:24px;display:grid;gap:6px;font-size:14px}
+.info h3{font-size:18px;color:var(--purple)}
+/* nav */
+.nav{position:fixed;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);width:min(560px,calc(100% - 28px));height:72px;display:flex;align-items:center;justify-content:space-around;border-radius:36px;z-index:40}
+.nav button{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;color:var(--muted);width:64px;transition:color .2s}
+.nav button svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.nav button.on{color:var(--purple);font-weight:600}
+.nav .mid{width:76px;height:76px;margin-top:-34px;border-radius:50%;background:var(--purple);color:#fff;box-shadow:0 10px 22px rgba(74,29,107,.45);position:relative;justify-content:center}
+.nav .mid.on{color:#fff}
+.nav .mid .badge{background:var(--orange);top:6px;right:6px}
+/* cart */
+.ov{position:fixed;inset:0;background:rgba(30,10,45,.5);opacity:0;pointer-events:none;transition:opacity .4s;z-index:50}
+.ov.show{opacity:1;pointer-events:auto}
+.drawer{position:fixed;right:0;top:0;bottom:0;width:min(420px,100%);background:var(--bg);z-index:60;transform:translateX(105%);transition:transform .5s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;padding:20px;padding-bottom:max(20px,env(safe-area-inset-bottom))}
+.drawer.show{transform:none}
+.dh{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.dh h3{font-size:22px;color:var(--purple)}
+.dh button{font-size:28px;width:40px;height:40px}
+.items{flex:1;overflow-y:auto;display:grid;gap:10px;align-content:start}
+.it{display:flex;align-items:center;gap:12px;padding:10px 12px;animation:in .4s}
+@keyframes in{from{opacity:0;transform:translateX(24px)}}
+.it .e{font-size:34px}.it div{flex:1;min-width:0}.it b{font-size:14px;display:block}.it small{color:var(--muted)}
+.q{display:flex;align-items:center;gap:8px}
+.q button{width:28px;height:28px;border-radius:50%;background:#fbd9b4;font-weight:700}
+.sum{padding-top:14px}
+.sum input,.sum textarea{width:100%;padding:12px 14px;border-radius:14px;border:1.5px solid #ecd5bf;background:var(--card);margin-bottom:8px;outline:0;resize:none}
+.sum input:focus,.sum textarea:focus{border-color:var(--orange)}
+.tot{display:flex;justify-content:space-between;font-weight:700;font-size:18px;margin:8px 0 12px}
+.go{width:100%;padding:15px;border-radius:30px;background:var(--purple);color:#fff;font-weight:600;font-size:16px;transition:transform .2s,opacity .2s}
+.go:active{transform:scale(.97)}.go:disabled{opacity:.5;cursor:not-allowed}
+.toast{position:fixed;left:50%;top:max(16px,env(safe-area-inset-top));transform:translate(-50%,-90px);background:var(--purple);color:#fff;padding:12px 20px;border-radius:30px;font-size:14px;z-index:90;transition:transform .5s cubic-bezier(.2,.9,.3,1.2);max-width:calc(100% - 32px);text-align:center;box-shadow:0 10px 24px rgba(0,0,0,.25)}
+.toast.show{transform:translate(-50%,0)}
+@media(max-width:560px){.slide{grid-template-columns:1fr 1fr;padding:24px 18px;min-height:260px}.brand h1{font-size:30px}.grid{grid-template-columns:repeat(2,1fr);gap:12px}.card{padding:12px}.pic{height:100px;font-size:60px}.offer .art{display:none}.pct{width:84px;height:84px;font-size:28px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:.01ms!important}html{scroll-behavior:auto}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top reveal">
+    <button class="ibtn neo" id="btnMenu" aria-label="Info toko"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <div class="brand"><small>Halo, Pecinta Kebab! 👋</small><h1>Gen Hasan</h1><small>Kebab Juara. Rasa Nendang.</small></div>
+    <button class="ibtn neo" id="btnBell" aria-label="Notifikasi"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 01-3.4 0"/></svg><span class="badge">1</span></button>
+    <button class="ibtn neo" id="btnBag" aria-label="Keranjang"><svg viewBox="0 0 24 24"><path d="M6 7h12l1 14H5L6 7zM9 7a3 3 0 016 0"/></svg><span class="badge" id="bagCount">0</span></button>
+  </header>
+
+  <div class="search reveal">
+    <label class="sbox neo"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="q" type="search" placeholder="Cari kebab favoritmu..." aria-label="Cari menu"></label>
+    <button class="ibtn neo" id="btnSort" aria-label="Urutkan"><svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></button>
+  </div>
+
+  <section class="hero reveal" id="hero" aria-label="Promo">
+    <div class="track" id="track">
+      <div class="slide"><div><h2>Daging Juicy.<br>Rasa Nendang.<em>Gen Hasan</em></h2><p>Kebab favoritmu, dibuat lebih nikmat.</p><a class="cta" href="#menu">Pesan Sekarang <i>→</i></a></div><div class="art">🥙</div></div>
+      <div class="slide"><div><h2>Paket Hemat.<br>Kenyang Maksimal.<em>Hemat Banyak</em></h2><p>Kebab plus minuman segar, harga bersahabat.</p><a class="cta" href="#offers">Lihat Promo <i>→</i></a></div><div class="art">🌯</div></div>
+      <div class="slide"><div><h2>Dibuat Segar.<br>Setiap Hari.<em>Tanpa Kompromi</em></h2><p>Bahan pilihan, saus racikan sendiri.</p><a class="cta" href="#menu">Lihat Menu <i>→</i></a></div><div class="art">🍖</div></div>
+    </div>
+    <div class="dots" id="dots"></div>
+  </section>
+
+  <nav class="cats" id="cats" aria-label="Kategori"></nav>
+
+  <section id="menu">
+    <div class="sh"><h3 id="menuTitle">Pilihan Favorit</h3><button id="viewAll">Lihat Semua →</button></div>
+    <div class="grid" id="grid"><div class="skel"></div><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
+  </section>
+
+  <section class="offer reveal" id="offers">
+    <div><small>PENAWARAN SPESIAL</small><h3 id="offTitle">Diskon Hingga 25%</h3><p>Untuk paket pilihan hari ini</p><a class="cta" href="#menu">Pesan Sekarang <i>→</i></a></div>
+    <div class="art">🥙</div>
+    <div class="pct"><div><span id="offPct">25%</span><small>OFF</small></div></div>
+  </section>
+
+  <section class="info neo reveal" id="info">
+    <h3>Gen Hasan Kebab</h3>
+    <div id="infoAddr">Buka setiap hari, 10.00 - 22.00</div>
+    <div id="infoWa"></div>
+  </section>
+</div>
+
+<nav class="nav neo" aria-label="Navigasi utama">
+  <button class="on" data-go="top"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v10h-6v-6H9v6H3z"/></svg>Beranda</button>
+  <button data-go="menu"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg>Menu</button>
+  <button class="mid" id="navOrder" aria-label="Pesanan"><svg viewBox="0 0 24 24"><path d="M6 7h12l1 14H5L6 7zM9 7a3 3 0 016 0"/></svg>Pesan<span class="badge" id="navCount" hidden>0</span></button>
+  <button data-go="offers"><svg viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8L3 12z"/><circle cx="7.5" cy="8.5" r="1"/></svg>Promo</button>
+  <button data-go="info"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Profil</button>
+</nav>
+
+<div class="ov" id="ov"></div>
+<aside class="drawer" id="drawer" aria-label="Keranjang">
+  <div class="dh"><h3>Pesananmu</h3><button id="closeCart" aria-label="Tutup">×</button></div>
+  <div class="items" id="items"></div>
+  <div class="sum">
+    <input id="cName" placeholder="Nama kamu" autocomplete="name">
+    <textarea id="cNote" rows="2" placeholder="Catatan (misal: tanpa bawang, pedas)"></textarea>
+    <div class="tot"><span>Total</span><span id="total">Rp0</span></div>
+    <button class="go" id="checkout" disabled>Pesan via WhatsApp</button>
+  </div>
+</aside>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
